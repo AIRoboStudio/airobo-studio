@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AIRobo Studio - Scratch-based AI Robotics Learning Platform. Voice control, AI Chat, and ESP32-S3 robotics all in one desktop app.">
+    <meta name="keywords" content="Scratch, ESP32, Robotics, AI, Education, STEM, Voice Control">
+    <meta name="author" content="AIRobo Studio">
+    <meta property="og:title" content="AIRobo Studio - AI Robotics Learning Platform">
+    <meta property="og:description" content="Control robots with your voice. Add AI to Scratch projects. No coding required.">
+    <meta property="og:image" content="https://yourusername.github.io/airobo-studio/images/og-image.png">
+    <meta property="og:url" content="https://yourusername.github.io/airobo-studio">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>AIRobo Studio · AI Robotics for Everyone</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-brand">
+                <span class="logo">🤖</span>
+                <span class="brand-name">AIRobo Studio</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#download">Download</a>
+                <a href="#extensions">Extensions</a>
+                <a href="#support">Support</a>
+                <a href="https://github.com/yourusername/airobo-studio" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Bring AI and Robotics <span class="highlight">to Scratch</span></h1>
+            <p class="hero-subtitle">
+                Voice-controlled sprites. AI Chat. Real ESP32-S3 robots.<br>
+                All from the Scratch you already know and love.
+            </p>
+            <div class="hero-buttons">
+                <a href="#download" class="btn btn-primary">⬇️ Download for Free</a>
+                <a href="#demo" class="btn btn-secondary">🎬 Watch Demo</a>
+            </div>
+            <div class="hero-stats">
+                <span>✅ Offline Voice Recognition</span>
+                <span>🎤 <100ms Latency</span>
+                <span>🔓 100% Free Core</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>What's Inside?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎤</div>
+                    <h3>Voice Control</h3>
+                    <p>Say "up", "down", "left", "right" — your sprite moves instantly. <strong>&lt;100ms latency</strong> with offline MediaPipe AI.</p>
+                    <code class="demo-code">when [up] speech recognized</code>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>AI Chat</h3>
+                    <p>Add intelligent conversations to your projects. Powered by Groq Llama 3 — <strong>you bring your own API key</strong>.</p>
+                    <code class="demo-code">ask AI [What is a robot?]</code>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>ESP32-S3 Robotics</h3>
+                    <p>Same code, now controlling a real robot. Motors, sensors, LEDs — <strong>no Arduino required</strong>.</p>
+                    <code class="demo-code">motor left speed 200</code>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Dynamic Extensions</h3>
+                    <p>Upload your own <code>.airoboext</code> files. The ecosystem grows with you.</p>
+                    <code class="demo-code">Upload Extension → Select file → Done</code>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔊</div>
+                    <h3>Text-to-Speech</h3>
+                    <p>Make your projects talk. Multiple voices, full control.</p>
+                    <code class="demo-code">speak [Hello world!]</code>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>100% Scratch Compatible</h3>
+                    <p>All your existing Scratch projects work. We just add superpowers.</p>
+                    <code class="demo-code">🏆 130M+ Scratch users</code>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo / Screenshot Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <h2>See It in Action</h2>
+            <div class="demo-container">
+                <div class="demo-video-placeholder">
+                    <div class="demo-simulation">
+                        <div class="sprite">🐱</div>
+                        <div class="command-log" id="commandLog">
+                            <p>👇 Say a command into your microphone</p>
+                        </div>
+                        <div class="mic-button" id="micButton">
+                            🎤 Start Listening
+                        </div>
+                        <p class="demo-note">⬆️ Try it now! Your browser supports voice recognition.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download">
+        <div class="container">
+            <h2>Download AIRobo Studio</h2>
+            <p class="section-subtitle">Free. Offline. Yours forever.</p>
+            <div class="download-grid">
+                <div class="download-card">
+                    <div class="os-icon">🪟</div>
+                    <h3>Windows</h3>
+                    <p>Windows 10 / 11</p>
+                    <a href="download/AIRoboStudio-Setup-1.0.0.exe" class="btn btn-download" download>
+                        ⬇️ Download .exe
+                    </a>
+                    <span class="file-size">~120 MB</span>
+                </div>
+                <div class="download-card">
+                    <div class="os-icon">🐧</div>
+                    <h3>Linux</h3>
+                    <p>Ubuntu 20.04+ / Debian</p>
+                    <a href="download/AIRoboStudio-1.0.0.AppImage" class="btn btn-download" download>
+                        ⬇️ Download .AppImage
+                    </a>
+                    <span class="file-size">~130 MB</span>
+                </div>
+                <div class="download-card">
+                    <div class="os-icon">🍎</div>
+                    <h3>macOS</h3>
+                    <p>Coming soon</p>
+                    <button class="btn btn-disabled" disabled>In Development</button>
+                    <span class="file-size">Subscribe for updates</span>
+                </div>
+            </div>
+            <div class="download-note">
+                <p>🔓 <strong>Open source extensions</strong> — <a href="https://github.com/yourusername/airobo-studio">View on GitHub</a></p>
+                <p>💡 <strong>First time?</strong> Watch the <a href="#demo">30-second demo</a> or read the <a href="#">Getting Started guide</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extensions Section -->
+    <section id="extensions" class="extensions">
+        <div class="container">
+            <h2>🔄 Extensions You Can Download</h2>
+            <div class="extension-grid">
+                <div class="extension-card">
+                    <h3>🎤 AI Playground</h3>
+                    <p>Voice recognition + AI Chat + Text-to-Speech. <strong>Fully open source.</strong></p>
+                    <a href="extensions/aiplayground.airoboext" class="btn-ext-download" download>⬇️ Download .airoboext</a>
+                    <a href="https://github.com/yourusername/airobo-studio/tree/main/extensions/aiplayground" class="btn-ext-source">📖 View Source</a>
+                </div>
+                <div class="extension-card">
+                    <h3>🤖 ESP32-S3 Robotics</h3>
+                    <p>Control real robots. Motors, sensors, LEDs. <strong>Hardware kit available.</strong></p>
+                    <a href="extensions/esp32s3-extension.airoboext" download>⬇️ Download .airoboext</a>
+                    <a href="https://github.com/yourusername/airobo-studio/tree/main/extensions/esp32s3-extension" class="btn-ext-source">📖 View Source</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section (Monetization) -->
+    <section id="support" class="support">
+        <div class="container">
+            <h2>💝 Support This Project</h2>
+            <p class="section-subtitle">AIRobo Studio is free forever. Your support keeps it alive.</p>
+            <div class="support-grid">
+                <div class="support-card">
+                    <div class="support-icon">🤖</div>
+                    <h3>Buy the Hardware Kit</h3>
+                    <p>The best way to support — you get a robot, I get to keep coding.</p>
+                    <div class="price">RM 299 (~$65)</div>
+                    <a href="https://airobo.com/shop" class="btn btn-support">🛒 Buy Now</a>
+                    <small>Includes ESP32-S3 + motors + sensors + 12 lessons</small>
+                </div>
+                <div class="support-card">
+                    <div class="support-icon">☕</div>
+                    <h3>Buy Me a Coffee</h3>
+                    <p>One-time donation. Every bit matters.</p>
+                    <div class="price">RM 5 / $1+</div>
+                    <a href="https://buymeacoffee.com/yourusername" class="btn btn-support">☕ Donate</a>
+                    <small>No account needed</small>
+                </div>
+                <div class="support-card">
+                    <div class="support-icon">💳</div>
+                    <h3>TNG eWallet (Malaysia)</h3>
+                    <p>Direct transfer, no fees.</p>
+                    <div class="price">Any amount</div>
+                    <button class="btn btn-support" id="showTngBtn">📱 Show QR Code</button>
+                    <div id="tngQrModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <h3>TNG eWallet QR Code</h3>
+                            <p>Scan to send support:</p>
+                            <img src="images/tng-qr.png" alt="TNG QR Code" style="width: 200px;">
+                            <p>Or send to: <strong>012-3456789</strong></p>
+                        </div>
+                    </div>
+                    <small>Malaysia only</small>
+                </div>
+                <div class="support-card">
+                    <div class="support-icon">⭐</div>
+                    <h3>GitHub Sponsors</h3>
+                    <p>Monthly recurring support.</p>
+                    <div class="price">$5 / $10 / $25</div>
+                    <a href="https://github.com/sponsors/yourusername" class="btn btn-support">⭐ Sponsor</a>
+                    <small>Early access to features</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo">🤖</span>
+                    <span>AIRobo Studio</span>
+                    <p>Scratch-based AI Robotics for everyone.</p>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="#download">Download</a>
+                        <a href="#extensions">Extensions</a>
+                    </div>
+                    <div>
+                        <h4>Resources</h4>
+                        <a href="https://github.com/yourusername/airobo-studio">GitHub</a>
+                        <a href="docs/">Documentation</a>
+                        <a href="#">Extension API</a>
+                    </div>
+                    <div>
+                        <h4>Support</h4>
+                        <a href="https://github.com/yourusername/airobo-studio/issues">Report Bug</a>
+                        <a href="mailto:airobo@yourdomain.com">Contact</a>
+                        <a href="#support">Donate</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AIRobo Studio. Built with 🎤 by a solo developer.</p>
+                <p>Scratch is a trademark of MIT. Not affiliated.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

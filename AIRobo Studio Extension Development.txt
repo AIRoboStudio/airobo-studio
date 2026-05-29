@@ -1,0 +1,141 @@
+AIRobo Studio Extension Development Guide
+Welcome to the AIRobo Studio Extension Development Guide. AIRobo Studio supports dynamic loading of custom third-party extensions (hardware and AI), allowing developers to add new blocks, integrate sensors, and generate custom Arduino C++ code without modifying the core platform.
+
+This guide will walk you through creating an extension package (.airoboext or .zip).
+
+1. Extension Package Structure
+An extension is essentially a ZIP archive containing configuration files, block logic, language files, and optional C++ libraries. The standard structure looks like this:
+
+text
+
+my-extension/
+├── config.json             # Extension metadata and configuration
+└── arduinoC/               # Arduino code generation and block logic
+    ├── main.ts             # TypeScript file defining block appearance and C++ code generation
+    ├── _images/            # Extension icons and cover images
+    ├── _locales/           # Translation files (e.g., zh-cn.json, en.json)
+    ├── _menus/             # Drop-down menu configurations (e.g., arduino.json)
+    └── libraries/          # (Optional) Native Arduino C++ libraries included with the extension
+When you are ready to publish, simply compress the contents of the my-extension folder into a .zip file and rename the extension to .airoboext (or keep it as .zip).
+
+2. Configuration (config.json)
+The config.json file is the entry point for your extension. It tells AIRobo Studio about the extension's name, author, supported platforms, and entry points.
+
+Example config.json:
+
+json
+
+{
+    "name": {
+        "zh-cn": "扩展模板",
+        "en": "Extension Template"
+    },
+    "description": {
+        "zh-cn": "基于AIRobo Studio规范的扩展模板",
+        "en": "Extension Template based on Mind+ specifications"
+    },
+    "author": "Developer Name",
+    "email": "developer@example.com",
+    "license": "MIT",
+    "isBoard": false,
+    "id": "extTemplate",
+    "platform": ["win", "mac", "web"],
+    "asset": {
+        "arduinoC": {
+            "dir": "arduinoC/",
+            "version": "0.0.1",
+            "board": ["microbit", "esp32", "arduino"],
+            "main": "main.ts"
+        }
+    }
+}
+IMPORTANT
+
+The "id" must be unique across all extensions. Make sure the "asset.arduinoC.main" points to your TypeScript logic file.
+
+3. Block Logic and Code Generation (main.ts)
+The main.ts file uses TypeScript and special comment annotations to define how blocks look in the AIRobo workspace, and what C++ code they generate when compiled.
+
+Example main.ts:
+
+typescript
+
+//% color="#AA278D" iconWidth=50 iconHeight=40
+namespace extTemplate {
+    
+    //% block="Test block: text: [SS] number: [SN] dropdown: [SD]" blockType="command"
+    //% SS.shadow="string"   SS.defl="mind+"
+    //% SN.shadow="number"   SN.defl="123"
+    //% SD.shadow="dropdown" SD.options="BTN" SD.defl="BTN.B"
+    export function myBlock(parameter: any, block: any) {
+        let ss = parameter.SS;
+        let sn = parameter.SN;
+        let sd = parameter.SD;
+        
+        // Include a custom library
+        Generator.addInclude('Mylibrary', '#include <Mylibrary.h>');
+        
+        // Instantiate an object
+        Generator.addObject(`library`, `MY_Library`, `library;`);
+        
+        // Add code to the setup() function
+        Generator.addSetup("library.begin", `library.begin();`);
+        
+        // Add code to the loop() or main program flow
+        Generator.addCode(`library.doSomething(${sn}, ${ss}, ${sd});\n`);
+    }
+}
+Understanding Block Annotations
+//% block="...": The text that appears on the block. Bracketed values like [SS] correspond to input fields.
+//% blockType="...": Can be "command" (executable step), "reporter" (returns a value like a number/string), or "boolean" (returns true/false).
+//% <param>.shadow="...": Defines the input type. Supported types include "string", "number", "boolean", "range", "dropdown", and "dropdownRound".
+//% <param>.defl="...": The default value for the input.
+Code Generation API (Generator)
+Generator.addInclude(id, code): Adds #include directives at the top of the file.
+Generator.addObject(id, type, code): Declares global objects or variables.
+Generator.addSetup(id, code): Inserts code into the Arduino setup() function.
+Generator.addCode(code): Inserts code wherever the block is placed in the script.
+4. Multi-language Support (_locales/)
+If you want your extension to support multiple languages, place JSON files in the _locales/ directory (e.g., en.json, zh-cn.json).
+
+These files map your block definitions and dropdown menus to translated text.
+
+Example _locales/zh-cn.json:
+
+json
+
+{
+    "extTemplate.myBlock|block": "测试所有输入类型：文本：[SS] 数字：[SN] 下拉：[SD]",
+    "extTemplate.BTN.A|menu": "按钮A",
+    "extTemplate.BTN.B|menu": "按钮B"
+}
+TIP
+
+The key format is usually <namespace>.<functionName>|block for block text, and <namespace>.<MenuName>.<OptionName>|menu for dropdown items.
+
+5. Dropdown Menus (_menus/)
+If you used "dropdown" types in your main.ts, you need to define the dropdown options in _menus/. You can create board-specific menus, such as arduino.json or esp32.json.
+
+Example _menus/arduino.json:
+
+json
+
+{
+  "BTN": {
+      "menu": [
+          ["A", "A"], 
+          ["B", "B"]
+      ],
+      "default_myBlock": "B"
+  }
+}
+The "menu" array contains sub-arrays where the first item is the display text (which can be translated via _locales) and the second item is the actual value passed to C++ generation.
+
+6. Packaging and Uploading
+Ensure all your files are properly organized within the my-extension/ directory.
+Select all the contents inside my-extension/ (including config.json and arduinoC/) and create a ZIP file.
+Rename the resulting ZIP file to have a .airoboext extension (e.g., my-extension.airoboext).
+In the AIRobo Studio desktop application, click "Upload Extension" and select your .airoboext file to dynamically load your new blocks.
+NOTE
+
+If your extension relies on custom Arduino libraries, place the raw C++ library folders inside arduinoC/libraries/. The AIRobo build system will automatically extract and link them when compiling to the board.
